@@ -14,8 +14,9 @@ class Weight2Controller extends Controller
      */
     public function index()
     {
-        error_log('send json');
-        return Weight2::latest()->first()->toJson();
+        $q = Weight2::latest()->first();
+        $q->amount = ($q->amount*100)/320;
+        return $q->toJson();
     }
 
     public function history()
